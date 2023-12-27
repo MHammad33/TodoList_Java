@@ -39,4 +39,14 @@ public class Task extends JPanel {
         this.index.setText(num + ". ");
         this.revalidate();
     }
+
+    public JButton getDone(){
+        return done;
+    }
+
+    public void changeState() {
+        this.setBackground(Color.green);
+        taskName.setBackground(Color.green);
+        revalidate();
+    }
 }
