@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class AppFrame extends JFrame {
@@ -30,6 +32,19 @@ public class AppFrame extends JFrame {
         newTask = footer.getNewTask();
         clear = footer.getClear();
 
+        // Add Event Listeners
+        addListeners();
+    }
+
+    public void addListeners(){
+        newTask.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                Task task = new Task();
+                list.add(task);
+                list.updateNumbers();
+            }
+        });
     }
 
 }
