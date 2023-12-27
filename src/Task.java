@@ -3,10 +3,10 @@ import java.awt.*;
 
 public class Task extends JPanel {
     JLabel index;
-    JTextField taskName;
+    JLabel taskName;
     JButton done;
 
-    public Task(){
+    public Task(String task){
         // Initial Style
         this.setPreferredSize(new Dimension(400, 20));
         this.setBackground(Color.red);
@@ -21,7 +21,9 @@ public class Task extends JPanel {
         this.add(index, BorderLayout.WEST);
 
         // Set the task in the center
-        taskName = new JTextField("");
+        taskName = new JLabel(task);
+        taskName.setPreferredSize(new Dimension(400, 60));
+        taskName.setFont(new Font("Sans-serif", Font.PLAIN, 16));
         taskName.setBorder(BorderFactory.createEmptyBorder());
         taskName.setBackground(Color.red);
         this.add(taskName, BorderLayout.CENTER);
