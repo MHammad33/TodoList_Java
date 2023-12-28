@@ -5,11 +5,12 @@ public class Task extends JPanel {
     JLabel index;
     JLabel taskName;
     JButton done;
+    JButton delete;
 
     public Task(String task){
         // Initial Style
         this.setPreferredSize(new Dimension(400, 20));
-        this.setBackground(Color.red);
+        this.setBackground(Color.blue);
         this.setLayout(new BorderLayout());
 
         // Set the index of each task
@@ -25,16 +26,25 @@ public class Task extends JPanel {
         taskName.setPreferredSize(new Dimension(400, 60));
         taskName.setFont(new Font("Sans-serif", Font.PLAIN, 16));
         taskName.setBorder(BorderFactory.createEmptyBorder());
-        taskName.setBackground(Color.red);
+        taskName.setForeground(Color.white);
+        taskName.setBackground(Color.blue);
         this.add(taskName, BorderLayout.CENTER);
+
+        // Set the Button delete in the list
+        delete = new JButton("Delete");
+        delete.setPreferredSize(new Dimension(40, 20));
+        delete.setBorder(BorderFactory.createEmptyBorder());
+        delete.setBackground(Color.red);
+        delete.setFocusPainted(false); // removes the focus after clicking
+        this.add(delete, BorderLayout.AFTER_LAST_LINE);
 
         // Set the Button done in the list
         done = new JButton("Done");
         done.setPreferredSize(new Dimension(40, 20));
         done.setBorder(BorderFactory.createEmptyBorder());
+        done.setBackground(Color.green);
         done.setFocusPainted(false); // removes the focus after clicking
         this.add(done, BorderLayout.EAST);
-
     }
 
     public void changeIndex(int num){
@@ -46,9 +56,19 @@ public class Task extends JPanel {
         return done;
     }
 
+    public JButton getDelete(){
+        return delete;
+    }
+
     public void changeState() {
         this.setBackground(Color.green);
         taskName.setBackground(Color.green);
+        revalidate();
+    }
+
+    public void deleteTask(){
+        this.setBackground(Color.white);
+        taskName.setText("");
         revalidate();
     }
 }

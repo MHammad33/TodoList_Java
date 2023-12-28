@@ -59,6 +59,16 @@ public class AppFrame extends JFrame {
                     }
                 });
 
+                // Delete Button in Task
+                task.getDelete().addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        task.deleteTask();
+                        list.updateNumbers(task);
+                        revalidate();
+                    }
+                });
+
             }
         });
     }
