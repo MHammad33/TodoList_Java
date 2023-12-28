@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Task extends JPanel {
@@ -6,6 +7,7 @@ public class Task extends JPanel {
     JLabel taskName;
     JButton done;
     JButton delete;
+    JButton update;
     boolean checked;
 
     public Task(String task){
@@ -31,7 +33,15 @@ public class Task extends JPanel {
         taskName.setBackground(Color.blue);
         this.add(taskName, BorderLayout.CENTER);
 
-        // Set the Button delete in the list
+        // Set the Button update in the task
+        update = new JButton("Update");
+        update.setPreferredSize(new Dimension(40, 20));
+        update.setBorder(new EmptyBorder(5, 5, 5, 5));
+        update.setBackground(Color.yellow);
+        update.setFocusPainted(false); // removes the focus after clicking
+        this.add(update, BorderLayout.BEFORE_FIRST_LINE);
+
+        // Set the Button delete in the task
         delete = new JButton("Delete");
         delete.setPreferredSize(new Dimension(40, 20));
         delete.setBorder(BorderFactory.createEmptyBorder());
@@ -65,6 +75,10 @@ public class Task extends JPanel {
         return delete;
     }
 
+    public JButton getUpdate(){
+        return update;
+    }
+
     public boolean getState(){
         return checked;
     }
@@ -79,6 +93,11 @@ public class Task extends JPanel {
     public void deleteTask(){
         this.setBackground(Color.white);
         taskName.setText("");
+        revalidate();
+    }
+
+    public void updateTask(String updatedTask) {
+        taskName.setText(updatedTask);
         revalidate();
     }
 }

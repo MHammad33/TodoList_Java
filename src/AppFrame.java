@@ -68,6 +68,17 @@ public class AppFrame extends JFrame {
                         repaint();
                     }
                 });
+
+                task.getUpdate().addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        task.updateTask(taskInput.getText());
+                        taskInput.setText("");
+                        KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner();
+                        list.updateNumbers();
+                        repaint();
+                    }
+                });
             }
         });
 
