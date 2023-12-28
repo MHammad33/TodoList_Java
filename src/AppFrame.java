@@ -1,5 +1,7 @@
 import javax.swing.*;
-import java.awt.BorderLayout;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class AppFrame extends JFrame {
@@ -9,10 +11,11 @@ public class AppFrame extends JFrame {
 
     private JButton newTask;
     private JButton clear;
+    private JTextField taskInput;
 
     public AppFrame(){
         // Creating the basic frame
-        this.setSize(400, 700);
+        this.setSize(600, 800);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
 
@@ -30,6 +33,34 @@ public class AppFrame extends JFrame {
         newTask = footer.getNewTask();
         clear = footer.getClear();
 
+        // Add Event Listeners
+        addListeners();
+    }
+
+    public void addListeners(){
+        newTask.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                // Create and Add Task
+                taskInput = footer.getTaskInput();
+                Task task = new Task(taskInput.getText());
+                list.add(task);
+                list.updateNumbers();
+                taskInput.setText("");
+                KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner();
+
+                // Done Button in task
+                task.getDone().addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        task.changeState();
+                        list.updateNumbers();
+                        revalidate();
+                    }
+                });
+
+            }
+        });
     }
 
 }
