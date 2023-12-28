@@ -34,7 +34,7 @@ public class Footer extends JPanel {
             this.add(Box.createHorizontalStrut(10));
 
             // Clear Button Styling
-            clear = new JButton("Clear Tasks");
+            clear = new JButton("Clear Completed Tasks");
             clear.setBorder(new EmptyBorder(5, 5, 5, 5));
             clear.setFont(new Font("Sans-serif", Font.PLAIN, 20));
             clear.setBackground(Color.red);

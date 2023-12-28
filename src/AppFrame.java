@@ -65,10 +65,18 @@ public class AppFrame extends JFrame {
                     public void mousePressed(MouseEvent e) {
                         task.deleteTask();
                         list.updateNumbers(task);
-                        revalidate();
+                        repaint();
                     }
                 });
+            }
+        });
 
+        // Clear button in the footer
+        clear.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                list.clearCompletedTasks();
+                repaint();
             }
         });
     }

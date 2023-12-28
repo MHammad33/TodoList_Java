@@ -6,6 +6,7 @@ public class Task extends JPanel {
     JLabel taskName;
     JButton done;
     JButton delete;
+    boolean checked;
 
     public Task(String task){
         // Initial Style
@@ -38,6 +39,10 @@ public class Task extends JPanel {
         delete.setFocusPainted(false); // removes the focus after clicking
         this.add(delete, BorderLayout.AFTER_LAST_LINE);
 
+
+        // Task is not done yet
+        checked = false;
+
         // Set the Button done in the list
         done = new JButton("Done");
         done.setPreferredSize(new Dimension(40, 20));
@@ -60,9 +65,14 @@ public class Task extends JPanel {
         return delete;
     }
 
+    public boolean getState(){
+        return checked;
+    }
+
     public void changeState() {
         this.setBackground(Color.green);
         taskName.setBackground(Color.green);
+        checked = true;
         revalidate();
     }
 
