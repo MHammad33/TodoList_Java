@@ -72,8 +72,6 @@ public class AppFrame extends JFrame {
                 task.getUpdate().addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        task.updateTask(taskInput.getText());
-                        taskInput.setText("");
                         KeyboardFocusManager.getCurrentKeyboardFocusManager().clearGlobalFocusOwner();
                         list.updateNumbers();
                         repaint();
